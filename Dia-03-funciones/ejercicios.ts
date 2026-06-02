@@ -1,115 +1,76 @@
 /**
  * Día 03 — Funciones y Type Narrowing
  * =====================================
+ * Completa los ejercicios a continuación.
+ * Para verificar: npx ts-node Dia-03-funciones/ejercicios.ts
  */
 
-// ─── Ejercicio 1: Function type ─────────────────────────────────────────────
-// Define un type 'Transformador' que reciba string y retorne string
+// ─── Ejercicio 1: Function Types ────────────────────────────────────────────
+// Declara un type 'Operacion' para funciones (a: number, b: number) => number
+// Crea una implementación de suma, resta y multiplicación
 
-type Transformador = (texto: string) => string;
-const mayusculas: Transformador = (texto) => texto.toUpperCase();
+// type Operacion = (a: number, b: number) => number;
 
-console.log("Ejercicio 1:", mayusculas("hola"));
+// ─── Ejercicio 2: Parámetros opcionales y por defecto ──────────────────────
+// Crea una función saludar(nombre: string, saludo?: string): string
 
-// ─── Ejercicio 2: Parámetros opcionales ─────────────────────────────────────
-// Crea una función que salude a un usuario con título opcional
+// function saludar(nombre: string, saludo?: string): string { }
 
-function saludoCompleto(nombre: string, titulo?: string): string {
-  return titulo ? `${titulo} ${nombre}` : `Hola ${nombre}`;
-}
+// ─── Ejercicio 3: Rest Parameters ───────────────────────────────────────────
+// Crea una función sumarTodos que acepte ...numeros: number[]
 
-console.log("Ejercicio 2:", saludoCompleto("Ana"), saludoCompleto("Luis", "Dr."));
+// function sumarTodos(...numeros: number[]): number { }
 
-// ─── Ejercicio 3: Rest parameters ───────────────────────────────────────────
-// Crea una función que concatene todos los strings que reciba
+// ─── Ejercicio 4: Function Overloads ────────────────────────────────────────
+// Crea una función procesar con sobrecarga para string y number
 
-function concatenar(...textos: string[]): string {
-  return textos.join(" ");
-}
+// function procesar(valor: string): string[];
+// function procesar(valor: number): number[];
+// function procesar(valor: string | number): string[] | number[] { }
 
-console.log("Ejercicio 3:", concatenar("TypeScript", "es", "genial"));
+// ─── Ejercicio 5: typeof narrowing ─────────────────────────────────────────
+// Crea una función duplicar que use typeof para string | number
 
-// ─── Ejercicio 4: typeof narrowing ──────────────────────────────────────────
-// Procesa un valor que puede ser number | boolean | string
+// function duplicar(valor: string | number): string | number { }
 
-function formatear(valor: number | boolean | string): string {
-  if (typeof valor === "number") return `Número: ${valor}`;
-  if (typeof valor === "boolean") return valor ? "Verdadero" : "Falso";
-  return `Texto: ${valor}`;
-}
+// ─── Ejercicio 6: instanceof narrowing ──────────────────────────────────────
+// Usa instanceof para diferenciar clases Perro y Gato
 
-console.log("Ejercicio 4:", formatear(42), formatear(true), formatear("TS"));
+// class Perro { ladrar() {} }
+// class Gato { maullar() {} }
+// function sonido(animal: Perro | Gato): void { }
 
-// ─── Ejercicio 5: Discriminated Union ───────────────────────────────────────
-// Calcula el área de diferentes formas geométricas
+// ─── Ejercicio 7: Discriminated Unions ──────────────────────────────────────
+// Modela Figura con tipo "circulo" | "rectangulo" y calcula área
 
-type Figura =
-  | { tipo: "circulo"; radio: number }
-  | { tipo: "rectangulo"; ancho: number; alto: number }
-  | { tipo: "triangulo"; base: number; altura: number };
+// type Figura = { tipo: "circulo"; radio: number } | { tipo: "rectangulo"; ancho: number; alto: number };
+// function area(figura: Figura): number { }
 
-function calcularArea(figura: Figura): number {
-  switch (figura.tipo) {
-    case "circulo":
-      return Math.PI * figura.radio ** 2;
-    case "rectangulo":
-      return figura.ancho * figura.alto;
-    case "triangulo":
-      return (figura.base * figura.altura) / 2;
-  }
-}
+// ─── Ejercicio 8: Type Predicates ───────────────────────────────────────────
+// Crea un type predicate 'esPez' que verifique si tiene método 'nadar'
 
-console.log("Ejercicio 5:", calcularArea({ tipo: "circulo", radio: 5 }));
-
-// ─── Ejercicio 6: Type Predicate ────────────────────────────────────────────
-// Crea un type predicate que valide si un valor es un número par
-
-function esNumeroPar(valor: unknown): valor is number {
-  return typeof valor === "number" && valor % 2 === 0;
-}
-
-const valores: unknown[] = [1, "dos", 3, 4, "cinco", 6];
-const soloPares = valores.filter(esNumeroPar);
-console.log("Ejercicio 6:", soloPares);
-
-// ─── Ejercicio 7: Function overloads ────────────────────────────────────────
-// Crea overloads para una función que acepte string o number[]
-
-function obtenerLongitud(valor: string): number;
-function obtenerLongitud(valor: number[]): number;
-function obtenerLongitud(valor: string | number[]): number {
-  return valor.length;
-}
-
-console.log("Ejercicio 7:", obtenerLongitud("TypeScript"), obtenerLongitud([1, 2, 3]));
-
-// ─── Ejercicio 8: Parámetros por defecto ────────────────────────────────────
-// Función para crear un usuario con valores por defecto
-
-function crearConfiguracion(host: string, puerto: number = 3000, ssl: boolean = true): object {
-  return { host, puerto, ssl, protocolo: ssl ? "https" : "http" };
-}
-
-console.log("Ejercicio 8:", crearConfiguracion("localhost"));
+// interface Pez { nadar: () => void }
+// interface Ave { volar: () => void }
+// function esPez(animal: Pez | Ave): animal is Pez { }
 
 // ====================================================================
 // 🧠 Tu turno — Escribe tu código aquí
 // ====================================================================
 
-// ─── Práctica 1: Function type ──────────────────────────────────────
-// Define type Callback = (n: number) => void.
-// Función procesarNumeros(numeros: number[], cb: Callback): void.
+// ─── Práctica 1: Callback tipada ────────────────────────────────────
+// Crea un type Callback<T> = (data: T) => void.
+// Función procesarDatos<T>(data: T, cb: Callback<T>): void.
 
-// ─── Práctica 2: Rest Parameters ────────────────────────────────────
-// Función promedio(...numeros: number[]): number que retorna el promedio.
+// ─── Práctica 2: Overloads con más firmas ───────────────────────────
+// Función convertir:
+// - (valor: boolean): "Si" | "No"
+// - (valor: number): string en binario
+// - (valor: string): number (length)
 
-// ─── Práctica 3: Function Overloads ─────────────────────────────────
-// Sobrecarga formatearEntrada: string → mayúsculas, number → "$XX.00", boolean → "Sí"/"No".
+// ─── Práctica 3: never en exhaustiveness ────────────────────────────
+// Función assertNever(valor: never): never.
+// Úsala en un switch exhaustivo para TipoAccion.
 
-// ─── Práctica 4: Type Predicate ─────────────────────────────────────
-// Crea esString(valor: unknown): valor is string.
-// Filtra [1, "dos", true, "cuatro"] para obtener solo strings.
-
-// ─── Práctica 5: Parámetros opcionales y por defecto ────────────────
-// Función crearEmail(usuario, dominio = "empresa.com", extension?): string.
-// Ej: crearEmail("ana") → "ana@empresa.com"
+// ─── Práctica 4: this typing ────────────────────────────────────────
+// Interface Botón con onClick tipando this.
+// Crea un objeto botón y simula un click.

@@ -1,137 +1,69 @@
 /**
  * Día 04 — Genéricos y Utility Types
  * ====================================
+ * Completa los ejercicios a continuación.
+ * Para verificar: npx ts-node Dia-04-genericos/ejercicios.ts
  */
 
-// ─── Ejercicio 1: Generic básico ────────────────────────────────────────────
-// Crea una función genérica que retorne el último elemento de un array
+// ─── Ejercicio 1: Generic Function ──────────────────────────────────────────
+// Crea una función primera<T> que retorne el primer elemento de un array
 
-function ultimo<T>(arr: T[]): T | undefined {
-  return arr[arr.length - 1];
-}
+// function primera<T>(arr: T[]): T | undefined { }
 
-console.log("Ejercicio 1:", ultimo([1, 2, 3]), ultimo(["a", "b", "c"]));
+// ─── Ejercicio 2: Múltiples type parameters ─────────────────────────────────
+// Crea una función pareja<T, U> que devuelva una tupla [T, U]
 
-// ─── Ejercicio 2: Generic con constraint ─────────────────────────────────────
-// Crea una función que acceda a .length solo si el tipo lo tiene
+// function pareja<T, U>(a: T, b: U): [T, U] { }
 
-function longitud<T extends { length: number }>(item: T): number {
-  return item.length;
-}
+// ─── Ejercicio 3: Generic Constraints ───────────────────────────────────────
+// Crea una función mostrarLongitud<T extends { length: number }>
 
-console.log("Ejercicio 2:", longitud("TypeScript"), longitud([1, 2, 3, 4]));
+// function mostrarLongitud<T extends { length: number }>(item: T): number { }
 
-// ─── Ejercicio 3: Generic interface ─────────────────────────────────────────
-// Define una interface genérica 'Resultado<T>' que pueda ser éxito o error
+// ─── Ejercicio 4: Generic Interface ─────────────────────────────────────────
+// Crea una interface ApiResponse<T> con datos: T y error: string | null
 
-interface Resultado<T> {
-  exito: boolean;
-  datos?: T;
-  error?: string;
-}
+// interface ApiResponse<T> { }
 
-function exito<T>(datos: T): Resultado<T> {
-  return { exito: true, datos };
-}
+// ─── Ejercicio 5: Generic con keyof ─────────────────────────────────────────
+// Crea una función getPropiedad<T, K extends keyof T>(obj: T, key: K): T[K]
 
-function fallo<T>(error: string): Resultado<T> {
-  return { exito: false, error };
-}
+// function getPropiedad<T, K extends keyof T>(obj: T, key: K): T[K] { }
 
-console.log("Ejercicio 3:", exito("OK"), fallo("Algo salió mal"));
+// ─── Ejercicio 6: Utility Types ─────────────────────────────────────────────
+// Usa Partial, Pick, Omit, Record con una interface Usuario
 
-// ─── Ejercicio 4: keyof constraint ──────────────────────────────────────────
-// Crea una función que actualice una propiedad de un objeto
+// interface Usuario { id: number; nombre: string; email: string; }
+// type UsuarioParcial = Partial<Usuario>;
+// type SoloNombre = Pick<Usuario, "nombre">;
 
-function actualizarPropiedad<T, K extends keyof T>(obj: T, key: K, valor: T[K]): T {
-  return { ...obj, [key]: valor };
-}
+// ─── Ejercicio 7: Mapped Types ──────────────────────────────────────────────
+// Crea un mapped type SoloLectura<T> que haga todo readonly
 
-const user = { nombre: "Ana", edad: 30 };
-console.log("Ejercicio 4:", actualizarPropiedad(user, "edad", 31));
+// type SoloLectura<T> = { readonly [K in keyof T]: T[K] };
 
-// ─── Ejercicio 5: Utility Types ─────────────────────────────────────────────
-// Usa Partial, Pick, Omit y Record con esta interface
+// ─── Ejercicio 8: Template Literal Types ────────────────────────────────────
+// Crea un type Handler que genere `on${Capitalize<Evento>}`
 
-interface Empleado {
-  id: number;
-  nombre: string;
-  puesto: string;
-  salario: number;
-}
-
-// Crea un type para actualización parcial
-type EmpleadoUpdate = Partial<Empleado>;
-const actualizacion: EmpleadoUpdate = { puesto: "Senior" };
-console.log("Ejercicio 5a:", actualizacion);
-
-// Crea un type solo con nombre y puesto
-type EmpleadoResumen = Pick<Empleado, "nombre" | "puesto">;
-const resumen: EmpleadoResumen = { nombre: "Luis", puesto: "Dev" };
-console.log("Ejercicio 5b:", resumen);
-
-// Crea un Record de empleados por ID
-type EmpleadosPorId = Record<number, Empleado>;
-const empleados: EmpleadosPorId = {
-  1: { id: 1, nombre: "Ana", puesto: "Dev", salario: 50000 },
-};
-console.log("Ejercicio 5c:", empleados);
-
-// ─── Ejercicio 6: ReturnType ────────────────────────────────────────────────
-// Extrae el tipo de retorno de una función usando ReturnType
-
-function crearUsuario(nombre: string, edad: number) {
-  return { nombre, edad, activo: true };
-}
-
-type UsuarioCreado = ReturnType<typeof crearUsuario>;
-const nuevo: UsuarioCreado = { nombre: "Carlos", edad: 28, activo: true };
-console.log("Ejercicio 6:", nuevo);
-
-// ─── Ejercicio 7: Mapped type ───────────────────────────────────────────────
-// Crea un mapped type que haga todas las propiedades opcionales y nullables
-
-type OpcionalNullable<T> = {
-  [K in keyof T]: T[K] | null;
-};
-
-interface Config {
-  host: string;
-  port: number;
-}
-
-type ConfigFlexible = OpcionalNullable<Config>;
-const cfg: ConfigFlexible = { host: null, port: 3000 };
-console.log("Ejercicio 7:", cfg);
-
-// ─── Ejercicio 8: Múltiples type parameters ─────────────────────────────────
-// Función que combina dos objetos en uno
-
-function combinar<T, U>(a: T, b: U): T & U {
-  return { ...a, ...b };
-}
-
-const combinado = combinar({ nombre: "Ana" }, { edad: 30 });
-console.log("Ejercicio 8:", combinado);
+// type Evento = "click" | "focus" | "blur";
+// type Handler = `on${Capitalize<Evento>}`;
 
 // ====================================================================
 // 🧠 Tu turno — Escribe tu código aquí
 // ====================================================================
 
-// ─── Práctica 1: Generic básico ─────────────────────────────────────
-// Función revertir<T>(arr: T[]): T[] que retorne el array invertido.
+// ─── Práctica 1: Generic class ──────────────────────────────────────
+// Crea una clase Caja<T> con un valor privado y métodos get/set.
 
-// ─── Práctica 2: Generic interface ──────────────────────────────────
-// Interface Caja<T> { contenido: T; etiqueta: string; abrir(): T }.
-// Crea una Caja<number>.
+// ─── Práctica 2: Utility types combinados ──────────────────────────
+// Usa Required<Pick<Usuario, "id" | "nombre">> y Omit<Usuario, "email">.
 
-// ─── Práctica 3: keyof constraint ──────────────────────────────────
-// Función obtenerPropiedad<T, K extends keyof T>(obj, key): T[K].
+// ─── Práctica 3: Conditional Types ──────────────────────────────────
+// Crea type IsString<T> = T extends string ? "si" : "no".
+// Prueba con IsString<string> e IsString<number>.
 
-// ─── Práctica 4: Utility Types ──────────────────────────────────────
-// Con interface Producto {id, nombre, precio, categoria} crea:
-// ProductoParcial (Partial), ProductoVista (Pick), ProductoSinId (Omit), Catalogo (Record).
+// ─── Práctica 4: Infer con ReturnType ──────────────────────────────
+// Crea un type MiReturnType<T> que extraiga el tipo de retorno usando infer.
 
-// ─── Práctica 5: Mapped type ────────────────────────────────────────
-// Crea VersionArray<T> que convierta cada propiedad en T[K][].
-// Ej: {x: number} → {x: number[]}
+// ─── Práctica 5: DeepReadonly ──────────────────────────────────────
+// Crea un mapped type recursivo DeepReadonly<T> que haga readonly anidado.

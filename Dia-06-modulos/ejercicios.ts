@@ -1,99 +1,52 @@
 /**
  * Día 06 — Módulos y Configuración
  * ==================================
+ * Completa los ejercicios a continuación.
+ * Para verificar: npx ts-node Dia-06-modulos/ejercicios.ts
  */
 
-// ─── Ejercicio 1: Import de tipos ──────────────────────────────────────────
-// Importa la interface UsuarioComp from './types'
+// ─── Ejercicio 1: Export / Import ───────────────────────────────────────────
+// Crea un archivo utils.ts con funciones exportadas e impórtalas aquí
 
-import type { UsuarioComp } from "./types/index.js";
+// ─── Ejercicio 2: Default export ────────────────────────────────────────────
+// Crea una clase Logger con export default e impórtala
 
-function mostrarUsuario(usuario: UsuarioComp): string {
-  return `${usuario.nombre} (${usuario.email})`;
-}
+// ─── Ejercicio 3: Re-exports ────────────────────────────────────────────────
+// Crea un archivo index.ts que re-exporte todo desde varios módulos
 
-// ─── Ejercicio 2: Export de funciones y variables ─────────────────────────
-// Exporta e importa funciones desde types
+// ─── Ejercicio 4: Import type ───────────────────────────────────────────────
+// Usa import type para importar solo tipos
 
-import { sumar, restar, PI } from "./types/index.js";
+// ─── Ejercicio 5: Namespace ─────────────────────────────────────────────────
+// Crea un namespace Validaciones con funciones email() y url()
 
-console.log("Ejercicio 2:", sumar(10, 5), restar(10, 5), PI);
+// namespace Validaciones { }
 
-// ─── Ejercicio 3: Re-export ────────────────────────────────────────────────
-// Crea un barrel export desde types/index.ts que re-exporte todo
+// ─── Ejercicio 6: Declaración de módulos ────────────────────────────────────
+// Crea un archivo .d.ts que declare un módulo sin tipos
 
-// ─── Ejercicio 4: Manejo de errores con unknown ────────────────────────────
-// Función que procesa datos parseando JSON de forma segura
+// ─── Ejercicio 7: Error handling con unknown ────────────────────────────────
+// Crea una función leerArchivo que maneje errores con unknown
 
-function parsearSeguro(texto: string): { ok: boolean; datos?: unknown } {
-  try {
-    const datos = JSON.parse(texto);
-    return { ok: true, datos };
-  } catch (error: unknown) {
-    if (error instanceof SyntaxError) {
-      return { ok: false };
-    }
-    throw error; // Errores inesperados se relanzan
-  }
-}
-
-console.log("Ejercicio 4:", parsearSeguro('{"a":1}'), parsearSeguro("{"));
-
-// ─── Ejercicio 5: Type-only import ─────────────────────────────────────────
-// Usa import type para importar solo tipos (no afecta el runtime)
-
-import type { RespuestaAPI } from "./types/index.js";
-
-function procesarRespuesta(resp: RespuestaAPI): void {
-  console.log("Ejercicio 5:", resp);
-}
-
-// ─── Ejercicio 6: Módulos con NodeNext ─────────────────────────────────────
-// Usa extensión .js en imports (requerido con module: NodeNext)
-
-// ─── Ejercicio 7: Declaración de módulos ───────────────────────────────────
-// Declara un módulo para una librería sin tipos
-
-// ─── Ejercicio 8: Import dinámico ──────────────────────────────────────────
-// Usa import() dinámico para cargar un módulo condicionalmente
-
-async function cargarModulo(nombre: string): Promise<void> {
-  if (nombre === "types") {
-    const modulo = await import("./types/index.js");
-    console.log("Ejercicio 8:", modulo.sumar(40, 2));
-  }
-}
-
-cargarModulo("types");
-
-// ─── Ejercicio complementario ──────────────────────────────────────────────
-// Descomenta la línea de abajo y ejecuta mostrarUsuario
-
-const usuarioEjemplo: UsuarioComp = {
-  id: 1,
-  nombre: "Ana García",
-  email: "ana@mail.com",
-};
-console.log("Ejercicio 1:", mostrarUsuario(usuarioEjemplo));
+// async function leerArchivo(ruta: string): Promise<string> { }
 
 // ====================================================================
 // 🧠 Tu turno — Escribe tu código aquí
 // ====================================================================
 
-// ─── Práctica 1: Import nombrado ────────────────────────────────────
-// Importa `restar` desde "./types/index.js" y úsala: restar(100, 37).
+// ─── Práctica 1: Path aliases ──────────────────────────────────────
+// Configura paths en tsconfig.json ("@/*": ["./src/*"]).
+// Crea un archivo en src/utils/ y otro que importe con @/utils/...
 
-// ─── Práctica 2: Exportar tu propia función ─────────────────────────
-// En types/index.ts agrega una función multiplicar(a, b): number.
-// Impórtala aquí y úsala.
+// ─── Práctica 2: Barrel exports ────────────────────────────────────
+// Crea varios archivos (usuarios.ts, productos.ts, pedidos.ts).
+// Un index.ts que re-exporte todo. Importa desde index.ts.
 
-// ─── Práctica 3: Type-only import ───────────────────────────────────
-// Cambia el import de UsuarioComp (línea 9) a `import type`.
-// Declara una variable UsuarioComp con datos reales.
+// ─── Práctica 3: Módulo con genéricos ──────────────────────────────
+// Crea un módulo colecciones.ts con funciones genéricas crearMapa<K,V>().
+// Úsalo importando desde este archivo.
 
-// ─── Práctica 4: Import dinámico ────────────────────────────────────
-// Función asíncrona que haga await import("./types/index.js")
-// y llame a sumar(5, 7) mostrando el resultado.
-
-// ─── Práctica 5: Declaración de módulo ──────────────────────────────
-// Crea un declare module "mi-libreria" con función saludar y constante version.
+// ─── Práctica 4: Módulo con tipos complejos ────────────────────────
+// Crea types/api.ts con tipos de una API REST.
+// types/domain.ts con tipos de dominio.
+// types/index.ts que re-exporte todo.

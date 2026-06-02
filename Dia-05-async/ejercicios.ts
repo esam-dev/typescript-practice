@@ -1,181 +1,69 @@
 /**
  * Día 05 — Clases, Enums y Async
  * ================================
+ * Completa los ejercicios a continuación.
+ * Para verificar: npx ts-node Dia-05-async/ejercicios.ts
  */
 
-// ─── Ejercicio 1: Clase con shorthand constructor ──────────────────────────
-// Crea una clase Producto con id (readonly), nombre y precio
+// ─── Ejercicio 1: Clase con Access Modifiers ────────────────────────────────
+// Crea una clase Persona con nombre (public), documento (private), edad (protected)
 
-class Producto {
-  constructor(
-    public readonly id: number,
-    public nombre: string,
-    public precio: number
-  ) {}
-}
+// class Persona { }
 
-const prod = new Producto(1, "Laptop", 1200);
-console.log("Ejercicio 1:", prod);
+// ─── Ejercicio 2: Shorthand constructor ─────────────────────────────────────
+// Crea una clase Usuario usando parameter properties (public readonly id, public nombre, private password)
 
-// ─── Ejercicio 2: Access Modifiers ─────────────────────────────────────────
-// Crea una clase CuentaBancaria con saldo privado y métodos públicos
+// class Usuario { }
 
-class CuentaBancaria {
-  private _saldo: number;
+// ─── Ejercicio 3: implements ────────────────────────────────────────────────
+// Crea una interface IEmpleado y una clase Empleado que la implemente
 
-  constructor(titular: string, saldoInicial: number = 0) {
-    this._saldo = saldoInicial;
-  }
+// interface IEmpleado { }
+// class Empleado implements IEmpleado { }
 
-  depositar(monto: number): void {
-    if (monto > 0) this._saldo += monto;
-  }
+// ─── Ejercicio 4: Abstract classes ──────────────────────────────────────────
+// Crea una clase abstracta Forma con un método abstracto calcularArea()
 
-  retirar(monto: number): boolean {
-    if (monto > 0 && monto <= this._saldo) {
-      this._saldo -= monto;
-      return true;
-    }
-    return false;
-  }
+// abstract class Forma { }
 
-  get saldo(): number {
-    return this._saldo;
-  }
-}
+// ─── Ejercicio 5: Enums ─────────────────────────────────────────────────────
+// Crea un enum Direccion con Norte, Sur, Este, Oeste y asigna valores string
 
-const cuenta = new CuentaBancaria("Ana", 1000);
-cuenta.depositar(500);
-console.log("Ejercicio 2:", cuenta.saldo);
-cuenta.retirar(200);
-console.log("Ejercicio 2:", cuenta.saldo);
+// enum Direccion { }
 
-// ─── Ejercicio 3: Enum ─────────────────────────────────────────────────────
-// Define un enum EstadoPedido con Pendiente, Enviado, Entregado, Cancelado
+// ─── Ejercicio 6: Promise<T> ────────────────────────────────────────────────
+// Crea una promesa tipada que resuelva un string
 
-enum EstadoPedido {
-  Pendiente = "PENDIENTE",
-  Enviado = "ENVIADO",
-  Entregado = "ENTREGADO",
-  Cancelado = "CANCELADO",
-}
+// const promesa: Promise<string> = new Promise((resolve) => { });
 
-function mostrarEstado(estado: EstadoPedido): string {
-  return `El pedido está ${estado}`;
-}
+// ─── Ejercicio 7: Async / Await ─────────────────────────────────────────────
+// Crea una función async obtenerDatos(): Promise<number> que use fetch
 
-console.log("Ejercicio 3:", mostrarEstado(EstadoPedido.Enviado));
+// async function obtenerDatos(): Promise<number> { }
 
-// ─── Ejercicio 4: Async con Promise<string> ─────────────────────────────────
-// Simula una llamada a API con setTimeout
+// ─── Ejercicio 8: Manejo de errores con unknown ─────────────────────────────
+// Crea una función async ejecutar que maneje errores con unknown
 
-function simularAPI(exito: boolean): Promise<string> {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (exito) resolve("Datos recibidos");
-      else reject(new Error("Error de red"));
-    }, 100);
-  });
-}
-
-simularAPI(true).then(console.log).catch(console.error);
-simularAPI(false).then(console.log).catch(() => console.log("Ejercicio 4: Error manejado"));
-
-// ─── Ejercicio 5: Async/Await ──────────────────────────────────────────────
-// Usa async/await con la función simularAPI
-
-async function obtenerDatos(): Promise<string> {
-  try {
-    const resultado = await simularAPI(true);
-    return `Resultado: ${resultado}`;
-  } catch (error: unknown) {
-    if (error instanceof Error) return `Error: ${error.message}`;
-    return "Error desconocido";
-  }
-}
-
-obtenerDatos().then(console.log);
-
-// ─── Ejercicio 6: Fetch tipado ─────────────────────────────────────────────
-// Tipa la respuesta de fetch para JSONPlaceholder
-
-interface Todo {
-  userId: number;
-  id: number;
-  title: string;
-  completed: boolean;
-}
-
-async function obtenerTodo(id: number): Promise<Todo> {
-  const res = await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`);
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  return res.json();
-}
-
-obtenerTodo(1).then(todo => console.log("Ejercicio 6:", todo));
-
-// ─── Ejercicio 7: Abstract class ───────────────────────────────────────────
-// Crea una clase abstracta Animal con método abstracto hacerSonido
-
-abstract class Animal {
-  constructor(public nombre: string) {}
-  abstract hacerSonido(): string;
-}
-
-class Perro extends Animal {
-  hacerSonido(): string {
-    return "¡Guau!";
-  }
-}
-
-class Gato extends Animal {
-  hacerSonido(): string {
-    return "¡Miau!";
-  }
-}
-
-const perro = new Perro("Max");
-const gato = new Gato("Luna");
-console.log("Ejercicio 7:", perro.hacerSonido(), gato.hacerSonido());
-
-// ─── Ejercicio 8: Manejo de errores con unknown ────────────────────────────
-// Función segura que procesa JSON
-
-function procesarJSON(texto: string): { exito: boolean; datos?: unknown; error?: string } {
-  try {
-    const datos = JSON.parse(texto);
-    return { exito: true, datos };
-  } catch (error: unknown) {
-    if (error instanceof Error) {
-      return { exito: false, error: error.message };
-    }
-    return { exito: false, error: "Error desconocido al parsear JSON" };
-  }
-}
-
-console.log("Ejercicio 8:", procesarJSON('{"ok": true}'));
-console.log("Ejercicio 8:", procesarJSON("json inválido"));
+// async function ejecutar(): Promise<void> { }
 
 // ====================================================================
 // 🧠 Tu turno — Escribe tu código aquí
 // ====================================================================
 
-// ─── Práctica 1: Clase con getter/setter ────────────────────────────
-// Clase Termometro con _celsius (private), getter celsius,
-// setter celsius (valida ≥ -273.15), getter fahrenheit (F = C*9/5+32).
+// ─── Práctica 1: Clase genérica ────────────────────────────────────
+// Crea una clase Stack<T> con push, pop, peek, y isEmpty.
 
-// ─── Práctica 2: Enum + función ─────────────────────────────────────
-// Enum NivelLog (Info, Advertencia, Error).
-// Función loggear(nivel: NivelLog, mensaje: string): "[NIVEL] mensaje".
+// ─── Práctica 2: Enum con método helper ────────────────────────────
+// Crea un enum StatusCode (OK=200, NotFound=404, Error=500).
+// Función describirCodigo(codigo: StatusCode): string.
 
-// ─── Práctica 3: Async/Await con fetch tipado ──────────────────────
-// Interface User {id, name, username, email}.
-// obtenerUsuario(id): Promise<User> desde jsonplaceholder.typicode.com/users/{id}.
+// ─── Práctica 3: Fetch con tipado y timeout ───────────────────────
+// Función fetchConTimeout<T>(url: string, ms: number): Promise<T>.
+// Usa Promise.race con un setTimeout.
 
-// ─── Práctica 4: Clase con implements ───────────────────────────────
-// Interface Serializable { toJSON(): string }.
-// Clase Persona implements Serializable (nombre, edad).
+// ─── Práctica 4: Async generator ───────────────────────────────────
+// Crea un async function* generadorPaginado(url: string): AsyncGenerator.
+// Que haga fetch página por página hasta que no haya más datos.
 
-// ─── Práctica 5: Promise.all tipado ─────────────────────────────────
-// Crea Promise<string> y Promise<number>, combínalas con Promise.all
-// y retorna "Mensaje: <str>, Número: <num>".
+// ─── Práctica 5: Singleton con clase ──────────────────────────────
+// Crea una clase Configuracion como singleton usando constructor privado.
