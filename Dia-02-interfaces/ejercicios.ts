@@ -2,71 +2,58 @@
  * Día 02 — Objetos y Modelado de Tipos
  * ======================================
  * Completa los ejercicios a continuación.
+ * Conceptos: interfaces, extends, arrays, tuplas, index signatures,
+ * readonly, intersecciones, uniones discriminadas, satisfies.
+ *
  * Para verificar: npx ts-node Dia-02-interfaces/ejercicios.ts
  */
 
-// ─── Ejercicio 1: Interface básica ──────────────────────────────────────────
+// ─── 1. Interface básica ────────────────────────────────────────────────────
 // Define una interface 'Producto' con nombre, precio, y categoria opcional
 
 // interface Producto { }
 
-// ─── Ejercicio 2: Interface con readonly ────────────────────────────────────
-// Crea una interface 'Pedido' con id (readonly), producto y cantidad
+// ─── 2. Interface con extends ───────────────────────────────────────────────
+// Define interface Animal con nombre. Luego Perro extends Animal y agrega raza
 
-// interface Pedido { }
+// interface Animal { nombre: string; }
+// interface Perro extends Animal { raza: string; }
 
-// ─── Ejercicio 3: Intersección de types ─────────────────────────────────────
-// Combina Direccion y Contacto en un type UsuarioCompleto
+// ─── 3. Arrays y Tuplas ─────────────────────────────────────────────────────
+// Declara un array de números y una tupla [string, number]
 
-// type Direccion = { calle: string; ciudad: string };
-// type Contacto = { email: string; telefono: string };
-// type UsuarioCompleto = Direccion & Contacto;
+// let numeros: number[] = [ ];
+// let tupla: [string, number] = [" ", 0];
 
-// ─── Ejercicio 4: Array tipado ──────────────────────────────────────────────
-// Declara un array de productos usando la interface del ejercicio 1
+// ─── 4. Index Signature ─────────────────────────────────────────────────────
+// Define una interface Diccionario con clave string y valor string
 
-// const inventario: Producto[] = [ ];
+// interface Diccionario { [clave: string]: string; }
 
-// ─── Ejercicio 5: Tupla ─────────────────────────────────────────────────────
-// Crea un type Coordenada como tupla [number, number] y úsalo
+// ─── 5. Readonly ────────────────────────────────────────────────────────────
+// Define una interface Config con apiUrl readonly y puertos readonly number[]
 
-// type Coordenada = [number, number];
+// interface Config { readonly apiUrl: string; readonly puertos: readonly number[]; }
 
-// ─── Ejercicio 6: Index Signature ───────────────────────────────────────────
-// Crea un interface 'Aprobaciones' donde cada clave string tiene valor boolean
+// ─── 6. Intersección y Unión Discriminada ───────────────────────────────────
+// Combina type A y type B con intersección (&)
+// Crea una unión discriminada Estado con "cargando" | "exito" | "error"
 
-// interface Aprobaciones { }
+// type A = { a: string };
+// type B = { b: number };
+// type C = A & B;
+// type Estado = { estado: "cargando" } | { estado: "exito"; datos: string } | { estado: "error"; mensaje: string };
 
-// ─── Ejercicio 7: Discriminated Union ───────────────────────────────────────
-// Modela una respuesta de API que puede ser éxito o error
+// ─── 7. satisfies ───────────────────────────────────────────────────────────
+// Usa satisfies para verificar un objeto de colores RGB
 
-// type RespuestaAPI = { };
-
-// ─── Ejercicio 8: satisfies ─────────────────────────────────────────────────
-// Usa satisfies para tipar un objeto literal de colores
-
-// const colores = { } satisfies Record<string, string>;
+// type Colores = Record<string, string>;
+// const colores = { rojo: "#ff0000", verde: "#00ff00" } satisfies Colores;
 
 // ====================================================================
-// 🧠 Tu turno — Escribe tu código aquí
+// 🧠 Tu turno — Práctica libre
 // ====================================================================
 
-// ─── Práctica 1: Interface desde cero ───────────────────────────────
-// Define interface Libro (titulo, autor, año?, readonly isbn).
-// Crea dos objetos Libro.
-
-// ─── Práctica 2: Tupla personalizada ────────────────────────────────
-// Crea type ParClaveValor = [string, string | number].
-// Declara 2 tuplas con datos reales.
-
-// ─── Práctica 3: Index Signature ─────────────────────────────────────
-// Interface ContadorPalabras con [palabra: string]: number.
-// Crea un objeto con 3 palabras y su frecuencia.
-
-// ─── Práctica 4: Discriminated Union ────────────────────────────────
-// EstadoReproductor: "reproduciendo" | "pausado" | "detenido".
-// Función mostrarEstado(estado): string que describa cada estado.
-
-// ─── Práctica 5: Intersección de types ──────────────────────────────
-// Combina Tiempo {horas, minutos} & Fecha {dia, mes, año} → DateTime.
-// Crea una variable ahora: DateTime.
+// Crea una interface Libro con titulo, autor, año (opcional) y isbn (readonly).
+// Crea dos objetos Libro y un array de Libros.
+// Usa una unión discriminada para modelar el resultado de una búsqueda.

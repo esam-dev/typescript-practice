@@ -2,68 +2,54 @@
  * Día 01 — Primitivos y Entorno
  * ===============================
  * Completa los ejercicios a continuación.
+ * Conceptos: tipos primitivos, type inference, any/unknown/void/never,
+ * strict mode, literal types y type aliases.
+ *
  * Para verificar: npx ts-node Dia-01-primitivos/ejercicios.ts
  */
 
-// ─── Ejercicio 1: Anotaciones básicas ───────────────────────────────────────
-// Asigna el tipo correcto a cada variable
+// ─── 1. Tipos primitivos ────────────────────────────────────────────────────
+// Declara variables con los tipos: string, number, boolean, null, undefined
 
-// let usuario: string = "Carlos";
+// let nombre: string = "Tu nombre";
 
-// ─── Ejercicio 2: Type Inference ────────────────────────────────────────────
-// ¿Qué tipos infiere TypeScript? Escribe el tipo en el comentario
+// ─── 2. Type Inference ──────────────────────────────────────────────────────
+// Declara variables sin anotación y escribe en el comentario qué tipo infiere TS
 
-// let ciudad = "Madrid";     // type: ______
+// let ciudad = "Barcelona";  // type: ______
 
-// ─── Ejercicio 3: Union types ───────────────────────────────────────────────
-// Declara una variable que pueda ser string o number
+// ─── 3. any vs unknown ──────────────────────────────────────────────────────
+// Crea dos variables (any y unknown). Demuestra que unknown requiere validación
 
-// let id: string | number = "ABC-123";
+// let peligroso: any = "texto";
+// let seguro: unknown = "texto";
+// Usa typeof para acceder a seguro.toUpperCase() de forma segura
 
-// ─── Ejercicio 4: Literal types ─────────────────────────────────────────────
-// Crea un type alias 'Color' que solo permita "rojo", "verde" o "azul"
+// ─── 4. void vs never ───────────────────────────────────────────────────────
+// Crea una función void (sin retorno) y una función never (lanza error)
 
-// type Color = "rojo" | "verde" | "azul";
-
-// ─── Ejercicio 5: unknown vs any ────────────────────────────────────────────
-// Transforma este código para usar 'unknown' de forma segura
-
-// function procesar(valor: unknown): string { }
-
-// ─── Ejercicio 6: never ─────────────────────────────────────────────────────
-// Escribe una función que lance un error y tenga tipo de retorno 'never'
-
+// function mostrarMensaje(mensaje: string): void { }
 // function errorFatal(mensaje: string): never { }
 
-// ─── Ejercicio 7: strictNullChecks ──────────────────────────────────────────
-// Corrige el error de null safety
+// ─── 5. strictNullChecks ────────────────────────────────────────────────────
+// Crea una función que reciba string | null y maneje el caso null
 
-// function saludar(nombre: string | null): string { }
+// function saludo(nombre: string | null): string { }
 
-// ─── Ejercicio 8: typeof guard ──────────────────────────────────────────────
-// Usa typeof para procesar diferentes tipos
+// ─── 6. Literal Types ───────────────────────────────────────────────────────
+// Crea un tipo literal 'Direccion' con valores "norte" | "sur" | "este" | "oeste"
 
-// function duplicar(valor: string | number): string | number { }
+// type Direccion = "norte" | "sur" | "este" | "oeste";
+
+// ─── 7. Type Aliases ────────────────────────────────────────────────────────
+// Crea un type alias 'Usuario' con propiedades nombre (string) y edad (number)
+
+// type Usuario = { nombre: string; edad: number };
 
 // ====================================================================
-// 🧠 Tu turno — Escribe tu código aquí
+// 🧠 Tu turno — Práctica libre
 // ====================================================================
 
-// ─── Práctica 1: Anotaciones explícitas ─────────────────────────────
-// Declara variables: nombreLibro (string), añoPublicacion (number),
-// disponible (boolean), etiqueta (string | null). Asígnales valores.
-
-// ─── Práctica 2: Type Alias con literales ───────────────────────────
-// Crea un type DiaSemana con los 7 días de la semana (literal union).
-// Declara una variable hoy de ese tipo y asígnale "viernes".
-
-// ─── Práctica 3: unknown de forma segura ────────────────────────────
-// Función procesarValor(valor: unknown): string
-// string → minúsculas | number → el doble como string | boolean → "verdadero"/"falso"
-
-// ─── Práctica 4: Función never ──────────────────────────────────────
-// Escribe una función bucleInfinito(): never con un while(true).
-
-// ─── Práctica 5: strictNullChecks ────────────────────────────────────
-// Función longitudSegura(texto: string | null): number
-// Retorna texto.length o 0 si es null.
+// Escribe una función que reciba un valor unknown, valide con typeof y
+// devuelva "es string", "es number" o "no es string ni number" según el caso.
+// Aplica strictNullChecks manejando correctamente null y undefined.

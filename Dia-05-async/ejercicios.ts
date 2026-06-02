@@ -2,68 +2,61 @@
  * Día 05 — Clases, Enums y Async
  * ================================
  * Completa los ejercicios a continuación.
+ * Conceptos: access modifiers, shorthand constructor, implements,
+ * abstract classes, enums, Promise<T>, async/await, fetch con tipado,
+ * manejo de errores con unknown.
+ *
  * Para verificar: npx ts-node Dia-05-async/ejercicios.ts
  */
 
-// ─── Ejercicio 1: Clase con Access Modifiers ────────────────────────────────
+// ─── 1. Access Modifiers ────────────────────────────────────────────────────
 // Crea una clase Persona con nombre (public), documento (private), edad (protected)
 
 // class Persona { }
 
-// ─── Ejercicio 2: Shorthand constructor ─────────────────────────────────────
-// Crea una clase Usuario usando parameter properties (public readonly id, public nombre, private password)
+// ─── 2. Shorthand Constructor ────────────────────────────────────────────────
+// Crea una clase Usuario con parameter properties
 
-// class Usuario { }
+// class Usuario { constructor(public readonly id: number, public nombre: string, private password: string) {} }
 
-// ─── Ejercicio 3: implements ────────────────────────────────────────────────
-// Crea una interface IEmpleado y una clase Empleado que la implemente
+// ─── 3. implements ──────────────────────────────────────────────────────────
+// Define interface IEmpleado y clase Empleado que la implemente
 
-// interface IEmpleado { }
+// interface IEmpleado { nombre: string; trabajar(): void; }
 // class Empleado implements IEmpleado { }
 
-// ─── Ejercicio 4: Abstract classes ──────────────────────────────────────────
-// Crea una clase abstracta Forma con un método abstracto calcularArea()
+// ─── 4. Abstract Classes ────────────────────────────────────────────────────
+// Clase abstracta Forma con método abstracto calcularArea(). Clase Circulo que extienda
 
-// abstract class Forma { }
+// abstract class Forma { abstract calcularArea(): number; }
+// class Circulo extends Forma { }
 
-// ─── Ejercicio 5: Enums ─────────────────────────────────────────────────────
-// Crea un enum Direccion con Norte, Sur, Este, Oeste y asigna valores string
+// ─── 5. Enums ───────────────────────────────────────────────────────────────
+// Crea un enum Direccion con valores string y un enum StatusCode con valores numéricos
 
-// enum Direccion { }
+// enum Direccion { Norte = "NORTE", Sur = "SUR", Este = "ESTE", Oeste = "OESTE" }
+// enum StatusCode { OK = 200, NotFound = 404, Error = 500 }
 
-// ─── Ejercicio 6: Promise<T> ────────────────────────────────────────────────
-// Crea una promesa tipada que resuelva un string
+// ─── 6. Promise<T> ──────────────────────────────────────────────────────────
+// Crea una promesa tipada Promise<string> que resuelva con un mensaje
 
 // const promesa: Promise<string> = new Promise((resolve) => { });
 
-// ─── Ejercicio 7: Async / Await ─────────────────────────────────────────────
-// Crea una función async obtenerDatos(): Promise<number> que use fetch
+// ─── 7. Async/Await con Fetch tipado ────────────────────────────────────────
+// Define interface Post y función async obtenerPosts(): Promise<Post[]>
+// Usa fetch con tipado y verifica res.ok
 
-// async function obtenerDatos(): Promise<number> { }
+// interface Post { userId: number; id: number; title: string; body: string; }
+// async function obtenerPosts(): Promise<Post[]> { }
 
-// ─── Ejercicio 8: Manejo de errores con unknown ─────────────────────────────
-// Crea una función async ejecutar que maneje errores con unknown
+// ─── 8. Manejo de errores ───────────────────────────────────────────────────
+// Función async ejecutar que llame a obtenerPosts y maneje errores con try/catch + unknown
 
 // async function ejecutar(): Promise<void> { }
 
 // ====================================================================
-// 🧠 Tu turno — Escribe tu código aquí
+// 🧠 Tu turno — Práctica libre
 // ====================================================================
 
-// ─── Práctica 1: Clase genérica ────────────────────────────────────
-// Crea una clase Stack<T> con push, pop, peek, y isEmpty.
-
-// ─── Práctica 2: Enum con método helper ────────────────────────────
-// Crea un enum StatusCode (OK=200, NotFound=404, Error=500).
-// Función describirCodigo(codigo: StatusCode): string.
-
-// ─── Práctica 3: Fetch con tipado y timeout ───────────────────────
-// Función fetchConTimeout<T>(url: string, ms: number): Promise<T>.
-// Usa Promise.race con un setTimeout.
-
-// ─── Práctica 4: Async generator ───────────────────────────────────
-// Crea un async function* generadorPaginado(url: string): AsyncGenerator.
-// Que haga fetch página por página hasta que no haya más datos.
-
-// ─── Práctica 5: Singleton con clase ──────────────────────────────
-// Crea una clase Configuracion como singleton usando constructor privado.
+// Crea una clase abstracta Figura con color (public) y un método abstracto dibujar().
+// Implementa Circulo y Rectangulo. Crea una función que acepte Figura[] y los dibuje.

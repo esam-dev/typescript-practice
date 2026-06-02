@@ -1,13 +1,12 @@
 /**
  * Día 06 — Tipos y utilidades compartidas
  * =========================================
+ * Crea aquí las interfaces y tipos que luego exportarás como barrel.
+ * Este archivo puede re-exportar desde otros archivos del módulo.
  */
 
 // ─── Interfaces ─────────────────────────────────────────────────────────────
-// Define aquí las interfaces UsuarioComp y RespuestaAPI<T>
+// Define UsuarioComp y RespuestaAPI<T>
 
-// ─── Funciones ──────────────────────────────────────────────────────────────
-// Define aquí funciones utilitarias (sumar, restar, etc.)
-
-// ─── Re-exports (barrel) ───────────────────────────────────────────────────
-// Re-exporta tipos desde otros módulos aquí
+// ─── Re-exports ─────────────────────────────────────────────────────────────
+// Re-exporta todo desde ./usuarios y ./productos

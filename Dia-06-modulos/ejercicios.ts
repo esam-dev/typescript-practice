@@ -2,51 +2,44 @@
  * Día 06 — Módulos y Configuración
  * ==================================
  * Completa los ejercicios a continuación.
+ * Conceptos: export/import, re-exports, tsconfig.json, @types,
+ * declaración de módulos, error handling con unknown, namespaces.
+ *
  * Para verificar: npx ts-node Dia-06-modulos/ejercicios.ts
  */
 
-// ─── Ejercicio 1: Export / Import ───────────────────────────────────────────
-// Crea un archivo utils.ts con funciones exportadas e impórtalas aquí
+// ─── 1. Export / Import ──────────────────────────────────────────────────────
+// Crea un archivo utils.ts con funciones exportadas (sumar, restar).
+// Impórtalas aquí y úsalas.
 
-// ─── Ejercicio 2: Default export ────────────────────────────────────────────
-// Crea una clase Logger con export default e impórtala
+// ─── 2. Default Export ───────────────────────────────────────────────────────
+// Crea una clase Logger con export default en logger.ts.
+// Impórtala aquí.
 
-// ─── Ejercicio 3: Re-exports ────────────────────────────────────────────────
-// Crea un archivo index.ts que re-exporte todo desde varios módulos
+// ─── 3. Re-exports (Barrel) ─────────────────────────────────────────────────
+// Crea varios archivos (usuarios.ts, productos.ts).
+// Crea un index.ts que re-exporte todo.
+// Importa desde index.ts aquí.
 
-// ─── Ejercicio 4: Import type ───────────────────────────────────────────────
-// Usa import type para importar solo tipos
+// ─── 4. Declaración de módulos (.d.ts) ──────────────────────────────────────
+// Crea un archivo declarations.d.ts que declare un módulo sin tipos.
+// Impórtalo aquí.
 
-// ─── Ejercicio 5: Namespace ─────────────────────────────────────────────────
+// ─── 5. Error handling con unknown ──────────────────────────────────────────
+// Función async leerArchivo(ruta: string): Promise<string>
+// que maneje errores con unknown y valide con instanceof Error
+
+// async function leerArchivo(ruta: string): Promise<string> { }
+
+// ─── 6. Namespaces (legacy) ─────────────────────────────────────────────────
 // Crea un namespace Validaciones con funciones email() y url()
 
 // namespace Validaciones { }
 
-// ─── Ejercicio 6: Declaración de módulos ────────────────────────────────────
-// Crea un archivo .d.ts que declare un módulo sin tipos
-
-// ─── Ejercicio 7: Error handling con unknown ────────────────────────────────
-// Crea una función leerArchivo que maneje errores con unknown
-
-// async function leerArchivo(ruta: string): Promise<string> { }
-
 // ====================================================================
-// 🧠 Tu turno — Escribe tu código aquí
+// 🧠 Tu turno — Práctica libre
 // ====================================================================
 
-// ─── Práctica 1: Path aliases ──────────────────────────────────────
 // Configura paths en tsconfig.json ("@/*": ["./src/*"]).
-// Crea un archivo en src/utils/ y otro que importe con @/utils/...
-
-// ─── Práctica 2: Barrel exports ────────────────────────────────────
-// Crea varios archivos (usuarios.ts, productos.ts, pedidos.ts).
-// Un index.ts que re-exporte todo. Importa desde index.ts.
-
-// ─── Práctica 3: Módulo con genéricos ──────────────────────────────
-// Crea un módulo colecciones.ts con funciones genéricas crearMapa<K,V>().
-// Úsalo importando desde este archivo.
-
-// ─── Práctica 4: Módulo con tipos complejos ────────────────────────
-// Crea types/api.ts con tipos de una API REST.
-// types/domain.ts con tipos de dominio.
-// types/index.ts que re-exporte todo.
+// Crea un archivo en src/mi-modulo/ y otro que importe usando @/mi-modulo/...
+// Instala @types/node y @types/express como dependencias de desarrollo.
