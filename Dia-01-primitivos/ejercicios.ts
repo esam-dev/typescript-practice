@@ -84,3 +84,26 @@ function duplicar(valor: string | number): string | number {
 }
 
 console.log("Ejercicio 8:", duplicar("Hola"), duplicar(5));
+
+// ====================================================================
+// 🧠 Tu turno — Escribe tu código aquí
+// ====================================================================
+
+// ─── Práctica 1: Anotaciones explícitas ─────────────────────────────
+// Declara variables: nombreLibro (string), añoPublicacion (number),
+// disponible (boolean), etiqueta (string | null). Asígnales valores.
+
+// ─── Práctica 2: Type Alias con literales ───────────────────────────
+// Crea un type DiaSemana con los 7 días de la semana (literal union).
+// Declara una variable hoy de ese tipo y asígnale "viernes".
+
+// ─── Práctica 3: unknown de forma segura ────────────────────────────
+// Función procesarValor(valor: unknown): string
+// string → minúsculas | number → el doble como string | boolean → "verdadero"/"falso"
+
+// ─── Práctica 4: Función never ──────────────────────────────────────
+// Escribe una función bucleInfinito(): never con un while(true).
+
+// ─── Práctica 5: strictNullChecks ────────────────────────────────────
+// Función longitudSegura(texto: string | null): number
+// Retorna texto.length o 0 si es null.

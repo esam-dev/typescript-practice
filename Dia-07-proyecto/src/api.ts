@@ -3,7 +3,7 @@
  * =====================================
  */
 
-import type { Usuario, Post } from "./types";
+import type { Usuario, Post } from "./types.js";
 
 const BASE_URL = "https://jsonplaceholder.typicode.com";
 

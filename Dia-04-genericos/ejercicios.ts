@@ -113,3 +113,25 @@ function combinar<T, U>(a: T, b: U): T & U {
 
 const combinado = combinar({ nombre: "Ana" }, { edad: 30 });
 console.log("Ejercicio 8:", combinado);
+
+// ====================================================================
+// 🧠 Tu turno — Escribe tu código aquí
+// ====================================================================
+
+// ─── Práctica 1: Generic básico ─────────────────────────────────────
+// Función revertir<T>(arr: T[]): T[] que retorne el array invertido.
+
+// ─── Práctica 2: Generic interface ──────────────────────────────────
+// Interface Caja<T> { contenido: T; etiqueta: string; abrir(): T }.
+// Crea una Caja<number>.
+
+// ─── Práctica 3: keyof constraint ──────────────────────────────────
+// Función obtenerPropiedad<T, K extends keyof T>(obj, key): T[K].
+
+// ─── Práctica 4: Utility Types ──────────────────────────────────────
+// Con interface Producto {id, nombre, precio, categoria} crea:
+// ProductoParcial (Partial), ProductoVista (Pick), ProductoSinId (Omit), Catalogo (Record).
+
+// ─── Práctica 5: Mapped type ────────────────────────────────────────
+// Crea VersionArray<T> que convierta cada propiedad en T[K][].
+// Ej: {x: number} → {x: number[]}

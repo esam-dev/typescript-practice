@@ -108,3 +108,27 @@ const colores = {
 } satisfies Colores;
 
 console.log("Ejercicio 8:", colores.rojo);
+
+// ====================================================================
+// 🧠 Tu turno — Escribe tu código aquí
+// ====================================================================
+
+// ─── Práctica 1: Interface desde cero ───────────────────────────────
+// Define interface Libro (titulo, autor, año?, readonly isbn).
+// Crea dos objetos Libro.
+
+// ─── Práctica 2: Tupla personalizada ────────────────────────────────
+// Crea type ParClaveValor = [string, string | number].
+// Declara 2 tuplas con datos reales.
+
+// ─── Práctica 3: Index Signature ─────────────────────────────────────
+// Interface ContadorPalabras con [palabra: string]: number.
+// Crea un objeto con 3 palabras y su frecuencia.
+
+// ─── Práctica 4: Discriminated Union ────────────────────────────────
+// EstadoReproductor: "reproduciendo" | "pausado" | "detenido".
+// Función mostrarEstado(estado): string que describa cada estado.
+
+// ─── Práctica 5: Intersección de types ──────────────────────────────
+// Combina Tiempo {horas, minutos} & Fecha {dia, mes, año} → DateTime.
+// Crea una variable ahora: DateTime.

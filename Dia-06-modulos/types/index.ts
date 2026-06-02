@@ -31,4 +31,4 @@ export const PI = 3.1415926535;
 
 // ─── Re-exports (barrel) ───────────────────────────────────────────────────
 
-export type { UsuarioComp as Usuario, RespuestaAPI };
+export type { UsuarioComp as Usuario };
