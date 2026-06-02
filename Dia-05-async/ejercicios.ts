@@ -155,3 +155,27 @@ function procesarJSON(texto: string): { exito: boolean; datos?: unknown; error?:
 
 console.log("Ejercicio 8:", procesarJSON('{"ok": true}'));
 console.log("Ejercicio 8:", procesarJSON("json inválido"));
+
+// ====================================================================
+// 🧠 Tu turno — Escribe tu código aquí
+// ====================================================================
+
+// ─── Práctica 1: Clase con getter/setter ────────────────────────────
+// Clase Termometro con _celsius (private), getter celsius,
+// setter celsius (valida ≥ -273.15), getter fahrenheit (F = C*9/5+32).
+
+// ─── Práctica 2: Enum + función ─────────────────────────────────────
+// Enum NivelLog (Info, Advertencia, Error).
+// Función loggear(nivel: NivelLog, mensaje: string): "[NIVEL] mensaje".
+
+// ─── Práctica 3: Async/Await con fetch tipado ──────────────────────
+// Interface User {id, name, username, email}.
+// obtenerUsuario(id): Promise<User> desde jsonplaceholder.typicode.com/users/{id}.
+
+// ─── Práctica 4: Clase con implements ───────────────────────────────
+// Interface Serializable { toJSON(): string }.
+// Clase Persona implements Serializable (nombre, edad).
+
+// ─── Práctica 5: Promise.all tipado ─────────────────────────────────
+// Crea Promise<string> y Promise<number>, combínalas con Promise.all
+// y retorna "Mensaje: <str>, Número: <num>".

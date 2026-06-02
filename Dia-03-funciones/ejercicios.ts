@@ -91,3 +91,25 @@ function crearConfiguracion(host: string, puerto: number = 3000, ssl: boolean = 
 }
 
 console.log("Ejercicio 8:", crearConfiguracion("localhost"));
+
+// ====================================================================
+// 🧠 Tu turno — Escribe tu código aquí
+// ====================================================================
+
+// ─── Práctica 1: Function type ──────────────────────────────────────
+// Define type Callback = (n: number) => void.
+// Función procesarNumeros(numeros: number[], cb: Callback): void.
+
+// ─── Práctica 2: Rest Parameters ────────────────────────────────────
+// Función promedio(...numeros: number[]): number que retorna el promedio.
+
+// ─── Práctica 3: Function Overloads ─────────────────────────────────
+// Sobrecarga formatearEntrada: string → mayúsculas, number → "$XX.00", boolean → "Sí"/"No".
+
+// ─── Práctica 4: Type Predicate ─────────────────────────────────────
+// Crea esString(valor: unknown): valor is string.
+// Filtra [1, "dos", true, "cuatro"] para obtener solo strings.
+
+// ─── Práctica 5: Parámetros opcionales y por defecto ────────────────
+// Función crearEmail(usuario, dominio = "empresa.com", extension?): string.
+// Ej: crearEmail("ana") → "ana@empresa.com"

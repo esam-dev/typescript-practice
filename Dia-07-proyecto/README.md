@@ -20,7 +20,8 @@ Crear una aplicación de línea de comandos que consuma la API de JSONPlaceholde
 ## Uso
 
 ```bash
-npx ts-node Dia-07-proyecto/src/index.ts
+node --loader ts-node/esm Dia-07-proyecto/src/index.ts
+# o: npm start Dia-07-proyecto/src/index.ts
 ```
 
 ## Estructura

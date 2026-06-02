@@ -5,9 +5,9 @@
  * Integra: tipos, genéricos, async/await, manejo de errores, clases, enums.
  */
 
-import { obtenerUsuarios, obtenerPosts } from "./api";
-import type { Usuario, Post, AccionMenu } from "./types";
-import { Color, colorizar } from "./types";
+import { obtenerUsuarios, obtenerPosts } from "./api.js";
+import type { Usuario, Post, AccionMenu } from "./types.js";
+import { Color, colorizar } from "./types.js";
 import * as readline from "readline";
 
 const rl = readline.createInterface({
