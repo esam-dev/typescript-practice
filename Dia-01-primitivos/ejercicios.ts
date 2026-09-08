@@ -11,12 +11,18 @@
 // ─── 1. Tipos primitivos ────────────────────────────────────────────────────
 // Declara variables con los tipos: string, number, boolean, null, undefined
 
-// let nombre: string = "Tu nombre";
-
+ let nombre: string = "Tu nombre";
+ let edad: number = 32;
+ let esEstudiante: boolean = true;
+ let direccion: null = null;
+ let  telefono: undefined = undefined;
+ 
 // ─── 2. Type Inference ──────────────────────────────────────────────────────
 // Declara variables sin anotación y escribe en el comentario qué tipo infiere TS
 
-// let ciudad = "Barcelona";  // type: ______
+  let ciudad = "Barcelona";  // type: string
+  let mes = "Septiembre";    // type: string 
+  let esVerano = false;      // type: boolean
 
 // ─── 3. any vs unknown ──────────────────────────────────────────────────────
 // Crea dos variables (any y unknown). Demuestra que unknown requiere validación
@@ -47,7 +53,7 @@
 // type Usuario = { nombre: string; edad: number };
 
 // ====================================================================
-// 🧠 Tu turno — Práctica libre
+//  Tu turno — Práctica libre
 // ====================================================================
 
 // Escribe una función que reciba un valor unknown, valide con typeof y
